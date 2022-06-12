@@ -2,21 +2,25 @@ import styles from "./Header.module.scss";
 import clsx from "clsx";
 import avatar from "../assets/images/avatar.png";
 import AddQuestionForm from "./AddQuestionForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const Header = () => {
-  const [modalOn , setModalOn] = useState(false)
-  const handleModal = ()=>{
-    setModalOn(true)
-  }
+  const [modalOn, setModalOn] = useState(false);
+  const handleModal = () => {
+    setModalOn(true);
+  };
   const closeModal = () => {
-    setModalOn(false)
-  }
+    setModalOn(false);
+  };
   return (
     <div className={styles["header"]}>
       <div className="container mx-auto flex justify-between items-center">
         <div className="sm:text-lg lg:text-2xl font-extrabold">لیست سوالات</div>
         <div className="flex items-center">
-          <button onClick={handleModal} className="flex bg-green-500 hover:bg-blue-700 text-white text-xs py-2 md:px-5 px-1 rounded items-center justify-center ">
+          <button
+            onClick={handleModal}
+            className="flex bg-green-500 hover:bg-blue-700 text-white text-xs py-2 md:px-5 px-1 rounded items-center justify-center "
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -36,7 +40,9 @@ const Header = () => {
             src={avatar}
             alt="Rounded avatar"
           ></img>
-          <div className={clsx(styles["user"], "md:mr-3 mr-1 font-bold text-sm")}>
+          <div
+            className={clsx(styles["user"], "md:mr-3 mr-1 font-bold text-sm")}
+          >
             الناز شاکردوست
           </div>
           <svg
@@ -53,7 +59,7 @@ const Header = () => {
           </svg>
         </div>
       </div>
-      {modalOn && <AddQuestionForm  closeModal={closeModal}/>}
+      {modalOn && <AddQuestionForm closeModal={closeModal} />}
     </div>
   );
 };

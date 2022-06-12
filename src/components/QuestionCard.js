@@ -2,7 +2,8 @@ import clsx from "clsx";
 import styles from "./QuestionCard.module.scss";
 import user from "../assets/images/user.png";
 import commentIcon from "../assets/images/comment.png";
-const QuestionCard = () => {
+const QuestionCard = ({questionData}) => {
+    const {time, date , title , description , answers} = questionData
   return (
     <div className="mt-5">
       <div className={clsx(styles["card"], "rounded-lg w-full flex flex-col justify-between pb-4")}>
@@ -14,12 +15,12 @@ const QuestionCard = () => {
         >
           <div className="flex items-center">
             <img class="w-8 h-8 rounded" src={user} alt="a person" />
-            <div className="mr-4 font-bold text-base">مشکل Auth در React</div>
+            <div className="mr-4 font-bold text-base">{title}</div>
           </div>
           <div className="flex">
             <div className="hidden sm:block">
               <span className={styles["label"]}>ساعت : </span>
-              <span className={clsx(styles["time"], "font-bold")}>16:48</span>
+              <span className={clsx(styles["time"], "font-bold")}>{time}</span>
             </div>
             <div
               className={clsx(
@@ -30,19 +31,17 @@ const QuestionCard = () => {
             <div className="hidden sm:block">
               <span className={styles["label"]}>تاریخ : </span>
               <span className={clsx(styles["time"], "font-bold")}>
-                1400/02/30
+                {date}
               </span>
             </div>
             <div className="md:mr-5 mr-1 flex items-center">
               <img className="h-4 w-4" src={commentIcon} alt="comment icon" />
-              <span className="mr-1 text-xs leading-6">20</span>
+              <span className="mr-1 text-xs leading-6">{answers.length}</span>
             </div>
           </div>
         </div>
         <p className="mt-5 mr-4 text-sm">
-          سلام من میخوام یه authentication ساده تو react بسازم اما این error رو
-          بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که
-          ببینید دقیقا چه مشکلی وجود داره
+         {description}
         </p>
         <div className="w-25 mr-auto ml-4">
           <button
