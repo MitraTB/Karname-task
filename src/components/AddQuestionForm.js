@@ -2,9 +2,9 @@ const AddQuestionForm = (props) => {
     const {closeModal} = props
   return (
     <>
-      <div className="bg-gray-500 opacity-80 fixed inset-0">
+      <div className="bg-gray-700 opacity-90 md:opacity-80 fixed inset-0">
         <div className="flex h-screen justify-center items-center">
-          <div className="flex-col justify-center w-1/2 bg-gray-100 rounded-xl text-black">
+          <div className="flex-col justify-center md:w-1/2 w-full  bg-gray-100 rounded-xl text-black">
             <div className="h-12 bg-white rounded-xl shadow-2xl px-6 py-3 flex justify-between">
               <div className="text-black">ایجاد سوال جدید</div>
               <div>
