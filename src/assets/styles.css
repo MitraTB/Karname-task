@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "IRYekan";
+  src: local("IRYekan"),
+    url('./fonts/Qs_Iranyekan\ medium.ttf') format("truetype");
+  font-weight: normal;
+}

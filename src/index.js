@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Layout from './Layout/default'
-import './assets/fonts/Qs_Iranyekan medium.ttf'; 
+import './assets/styles.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

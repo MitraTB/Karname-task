@@ -1,12 +1,17 @@
 import clsx from "clsx";
 import styles from "./QuestionCard.module.scss";
-import user from "../assets/images/user.png";
-import commentIcon from "../assets/images/comment.png";
-const QuestionCard = ({questionData}) => {
-    const {time, date , title , description , answers} = questionData
+import user from "../../assets/images/user.png";
+import commentIcon from "../../assets/images/comment.png";
+const QuestionCard = ({ questionData }) => {
+  const { time, date, title, description, answers } = questionData;
   return (
     <div className="mt-5">
-      <div className={clsx(styles["card"], "rounded-lg w-full flex flex-col justify-between pb-4")}>
+      <div
+        className={clsx(
+          styles["card"],
+          "rounded-lg w-full flex flex-col justify-between pb-4"
+        )}
+      >
         <div
           className={clsx(
             styles["card__header"],
@@ -30,9 +35,7 @@ const QuestionCard = ({questionData}) => {
             ></div>
             <div className="hidden sm:block">
               <span className={styles["label"]}>تاریخ : </span>
-              <span className={clsx(styles["time"], "font-bold")}>
-                {date}
-              </span>
+              <span className={clsx(styles["time"], "font-bold")}>{date}</span>
             </div>
             <div className="md:mr-5 mr-1 flex items-center">
               <img className="h-4 w-4" src={commentIcon} alt="comment icon" />
@@ -40,13 +43,11 @@ const QuestionCard = ({questionData}) => {
             </div>
           </div>
         </div>
-        <p className="mt-5 mr-4 text-sm">
-         {description}
-        </p>
+        <p className="mt-5 mr-4 text-sm">{description}</p>
         <div className="w-25 mr-auto ml-4">
           <button
             type="button"
-            class="w-full inline-block px-2 py-2 border-2 border-green-500 text-green-500 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            class="w-full inline-block px-2 py-2 border-2 border-green-500 text-green-500 font-medium text-xs leading-tight uppercase rounded-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
           >
             مشاهده جزئیات
           </button>

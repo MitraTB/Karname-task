@@ -1,0 +1,1 @@
+export const questionList = 'http://localhost:3000/questions'

@@ -1,22 +1,24 @@
-import QuestionCard from "./components/QuestionCard";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { questionList } from "./Api/endpoints";
+import {QuestionCard} from "./components";
+import api from "./utils/api_instance";
 
 function App() {
-  const [questins, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
   useEffect(() => {
     async function fetchQuestions() {
-      let response = await axios.get("http://localhost:3000/questions");
+      let response = await api.get(questionList);
       setQuestions(response.data);
     }
     fetchQuestions();
   }, []);
-  const qestionCards = questins.map((data, index) => {
+  const qestionCards = questions.map((data, index) => {
     return  <QuestionCard questionData={data} key={index}/>
   });
   return (
     <div className="container mx-auto">
-      {questins && qestionCards}
+      {questions && !! questions.length && qestionCards}
     </div>
   );
 }
