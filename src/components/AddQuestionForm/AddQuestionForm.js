@@ -1,32 +1,47 @@
 import { useEffect, useState } from "react";
 import Close from "../icons/Close";
-import api from '../../utils/api_instance'
-import {questionList} from '../../Api/endpoints'
+import api from "../../utils/api_instance";
+import { questionList } from "../../Api/endpoints";
 const AddQuestionForm = (props) => {
-  const { closeModal , fetchApi } = props;
+  const { closeModal } = props;
   const [title, setTitle] = useState("");
+  const [titleIsValid, setTilteIsValid] = useState(true);
   const [description, setDescription] = useState("");
-  const handleSubmit = async() => {
-    console.log('dadadas');
+  const [descriptionIsValid, setDescriptionIsValid] = useState(true);
+  const handleSubmit = async () => {
+    if (title.trim() == "" && description.trim() == ""){
+      setTilteIsValid(false);
+      setDescriptionIsValid(false);
+    }
+      if (title.trim() == "") {
+        setTilteIsValid(false);
+        return;
+      }
+    if (description.trim() == "") {
+      setDescriptionIsValid(false);
+      return;
+    }
+    setTilteIsValid(true);
     const form = {
       title: title,
-      description:description,
-      time:'12:30',
-      date:'1400/03/10',
-      answers:[],
+      description: description,
+      time: "12:30",
+      date: "1400/03/10",
+      answers: [],
       badAnswer: 0,
       goodAnswer: 0,
-    }
-    const res =await api.post(questionList , form)
-    console.log(res);
-    closeModal()
+    };
+    await api.post(questionList(), form);
+    closeModal();
   };
-  const addTitle = (e) =>{
-    setTitle(e.target.value)
-  }
-  const addDescription = (e) =>{
-    setDescription(e.target.value)
-  }
+  const addTitle = (e) => {
+    setTitle(e.target.value);
+    setTilteIsValid(true)
+  };
+  const addDescription = (e) => {
+    setDescription(e.target.value);
+    setDescriptionIsValid(true)
+  };
   return (
     <>
       <div className="bg-gray-500 opacity-90 fixed inset-0 z-100">
@@ -56,6 +71,11 @@ const AddQuestionForm = (props) => {
                   class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
+                {!titleIsValid && (
+                  <p className="text-orange-600 text-xs">
+                    فیلد موضوع الزامی است
+                  </p>
+                )}
                 <label
                   for="questionText"
                   class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -70,6 +90,11 @@ const AddQuestionForm = (props) => {
                   class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
+                {!descriptionIsValid && (
+                  <p className="text-orange-600 text-xs">
+                    فیلد متن سوال الزامی است
+                  </p>
+                )}
               </div>
               <div className="flex float-left my-6">
                 <button

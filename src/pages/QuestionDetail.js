@@ -16,7 +16,6 @@ const QuestionDetail = () => {
   }, []);
   const { id } = useParams();
   const setGoodNum = async (num , index) => {
-    console.log(num);
   };
   return (
     <Layout>

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import styles from "./QuestionCard.module.scss";
 import user from "../../assets/images/user.png";
 import commentIcon from "../../assets/images/comment.png";
@@ -41,7 +41,9 @@ const QuestionCard = ({ questionData, detailBtn }) => {
             </div>
             <div className="md:mr-5 mr-1 flex items-center">
               <img className="h-4 w-4" src={commentIcon} alt="comment icon" />
-              {/* <span className="mr-1 text-xs leading-6">{answers.length || '0'}</span> */}
+              <span className="mr-1 text-xs leading-6">
+                {answers.length || '0'}
+              </span>
             </div>
           </div>
         </div>
