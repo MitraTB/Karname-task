@@ -3,10 +3,11 @@ import Close from "../icons/Close";
 import api from '../../utils/api_instance'
 import {questionList} from '../../Api/endpoints'
 const AddQuestionForm = (props) => {
-  const { closeModal } = props;
+  const { closeModal , fetchApi } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
+    console.log('dadadas');
     const form = {
       title: title,
       description:description,
@@ -16,8 +17,8 @@ const AddQuestionForm = (props) => {
       badAnswer: 0,
       goodAnswer: 0,
     }
-    const res = api.post(questionList , form)
-    console.log(form);
+    const res =await api.post(questionList , form)
+    console.log(res);
     closeModal()
   };
   const addTitle = (e) =>{

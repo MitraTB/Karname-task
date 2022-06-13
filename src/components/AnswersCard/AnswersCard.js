@@ -5,7 +5,6 @@ import user from "../../assets/images/user.png";
 import commentIcon from "../../assets/images/comment.png";
 import Happy from "../icons/Happy";
 import Sad from "../icons/Sad";
-import { getSpecialQuestion } from "../../Api/endpoints";
 
 const AnswersCard = ({data , setGoodNum , index}) => {
   const {text, bad, good ,userName} = data
@@ -52,7 +51,7 @@ const AnswersCard = ({data , setGoodNum , index}) => {
             </div>
           </div>
           <p className="mt-5 mr-4 text-sm">{text}</p>
-          <div className="flex mr-auto ml-4">
+          <div className="flex mr-auto ml-4 mt-5">
             <button
             onClick={()=>{setGoodNum(good+1 , index)}}
               type="button"
