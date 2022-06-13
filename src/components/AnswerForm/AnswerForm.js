@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AnswerForm = () => {
+const AnswerForm = ({ sendAnswertoParent , getDataAgain }) => {
   const [answer, setAnswer] = useState("");
   const [answerisValid, setAnswerIsValid] = useState(true);
   const addAnswer = (e) => {
@@ -13,6 +13,15 @@ const AnswerForm = () => {
       setAnswerIsValid(false);
       return;
     }
+    setAnswerIsValid(true);
+    sendAnswertoParent({
+      text: answer,
+      good: 0,
+      bad: 0,
+      userName: "میترا طباطبایی",
+    });
+    setAnswer('')
+    getDataAgain()
   };
   return (
     <div className="mt-6">

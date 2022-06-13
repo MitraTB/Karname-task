@@ -9,14 +9,14 @@ const AddQuestionForm = (props) => {
   const [description, setDescription] = useState("");
   const [descriptionIsValid, setDescriptionIsValid] = useState(true);
   const handleSubmit = async () => {
-    if (title.trim() == "" && description.trim() == ""){
+    if (title.trim() == "" && description.trim() == "") {
       setTilteIsValid(false);
       setDescriptionIsValid(false);
     }
-      if (title.trim() == "") {
-        setTilteIsValid(false);
-        return;
-      }
+    if (title.trim() == "") {
+      setTilteIsValid(false);
+      return;
+    }
     if (description.trim() == "") {
       setDescriptionIsValid(false);
       return;
@@ -31,16 +31,20 @@ const AddQuestionForm = (props) => {
       badAnswer: 0,
       goodAnswer: 0,
     };
-    await api.post(questionList(), form);
+    try {
+      await api.post(questionList(), form);
+    } catch (e) {
+      console.log(e);
+    }
     closeModal();
   };
   const addTitle = (e) => {
     setTitle(e.target.value);
-    setTilteIsValid(true)
+    setTilteIsValid(true);
   };
   const addDescription = (e) => {
     setDescription(e.target.value);
-    setDescriptionIsValid(true)
+    setDescriptionIsValid(true);
   };
   return (
     <>

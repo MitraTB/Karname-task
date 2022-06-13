@@ -7,15 +7,31 @@ import { getSpecialQuestion } from "../Api/endpoints";
 
 const QuestionDetail = () => {
   const [question, setQuestion] = useState(null);
+  const [updateData, setUpdateData] = useState(false)
   useEffect(() => {
     async function fetchQuestions() {
-      let response = await api.get(getSpecialQuestion(id));
-      setQuestion(response.data);
+      try {
+        let response = await api.get(getSpecialQuestion(id));
+        setQuestion(response.data);
+        setUpdateData(false)
+      } catch (e) {
+        console.log(e);
+      }
     }
     fetchQuestions();
-  }, []);
+  }, [updateData]);
+  const sendAnswer = (newAnswer) => {
+    const res = api.put(getSpecialQuestion(id), {
+      title:question.title,
+      description:question.description,
+      time:'12:00',
+      date:'1400/01/26',
+      answers: [...question.answers, newAnswer],
+    });
+  };
   const { id } = useParams();
-  const setGoodNum = async (num , index) => {
+  const setGoodNum = (answerNew) => {
+    console.log("answerNew", answerNew);
   };
   return (
     <Layout>
@@ -27,14 +43,13 @@ const QuestionDetail = () => {
             return (
               <AnswersCard
                 data={answer}
-                index={index}
                 key={index}
                 setGoodNum={setGoodNum}
               />
             );
           })}
         <div>
-          <AnswerForm />
+          <AnswerForm sendAnswertoParent={sendAnswer} getDataAgain={()=>setUpdateData(true)}/>
         </div>
       </div>
     </Layout>
