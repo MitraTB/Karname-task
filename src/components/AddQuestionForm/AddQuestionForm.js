@@ -1,6 +1,31 @@
+import { useEffect, useState } from "react";
 import Close from "../icons/Close";
+import api from '../../utils/api_instance'
+import {questionList} from '../../Api/endpoints'
 const AddQuestionForm = (props) => {
   const { closeModal } = props;
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const handleSubmit = () => {
+    const form = {
+      title: title,
+      description:description,
+      time:'12:30',
+      date:'1400/03/10',
+      answers:[],
+      badAnswer: 0,
+      goodAnswer: 0,
+    }
+    const res = api.post(questionList , form)
+    console.log(form);
+    closeModal()
+  };
+  const addTitle = (e) =>{
+    setTitle(e.target.value)
+  }
+  const addDescription = (e) =>{
+    setDescription(e.target.value)
+  }
   return (
     <>
       <div className="bg-gray-500 opacity-90 fixed inset-0 z-100">
@@ -25,6 +50,8 @@ const AddQuestionForm = (props) => {
                 <input
                   type="text"
                   id="question"
+                  value={title}
+                  onChange={addTitle}
                   class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
@@ -35,8 +62,10 @@ const AddQuestionForm = (props) => {
                   متن سوال
                 </label>
                 <textarea
-                  type="questionText"
-                  id="email"
+                  type="text"
+                  id="questionText"
+                  onChange={addDescription}
+                  value={description}
                   class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
@@ -51,6 +80,7 @@ const AddQuestionForm = (props) => {
                 </button>
                 <button
                   type="button"
+                  onClick={handleSubmit}
                   class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out"
                 >
                   ایجاد سوال

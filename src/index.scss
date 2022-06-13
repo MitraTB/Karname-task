@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @import './assets/_variable.scss';
-:root {
-  --darkGray: #454545;
-  --white: #ffff;
-}
 body {
   margin: 0;
   font-family: IRYekanv, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -13,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $bg-color;
+  color: $dark-gray;
 }
 
 code {

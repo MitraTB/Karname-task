@@ -35,7 +35,7 @@ const Header = () => {
           <Triangle/>
         </div>
       </div>
-      {modalOn && <AddQuestionForm closeModal={() => handleModal(false)} />}
+      {modalOn && <AddQuestionForm closeModal={() => handleModal(false)}/>}
     </div>
   );
 };

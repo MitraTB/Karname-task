@@ -1,15 +1,17 @@
 import clsx from "clsx";
+import { Link } from 'react-router-dom'
 import styles from "./QuestionCard.module.scss";
 import user from "../../assets/images/user.png";
 import commentIcon from "../../assets/images/comment.png";
-const QuestionCard = ({ questionData }) => {
-  const { time, date, title, description, answers } = questionData;
+const QuestionCard = ({ questionData, detailBtn }) => {
+  const { time, date, title, description, answers, id } = questionData;
   return (
     <div className="mt-5">
       <div
         className={clsx(
           styles["card"],
-          "rounded-lg w-full flex flex-col justify-between pb-4"
+          "rounded-lg w-full pb-4",
+          detailBtn && "flex flex-col justify-between"
         )}
       >
         <div
@@ -39,19 +41,23 @@ const QuestionCard = ({ questionData }) => {
             </div>
             <div className="md:mr-5 mr-1 flex items-center">
               <img className="h-4 w-4" src={commentIcon} alt="comment icon" />
-              <span className="mr-1 text-xs leading-6">{answers.length}</span>
+              {/* <span className="mr-1 text-xs leading-6">{answers.length || '0'}</span> */}
             </div>
           </div>
         </div>
         <p className="mt-5 mr-4 text-sm">{description}</p>
-        <div className="w-25 mr-auto ml-4">
-          <button
-            type="button"
-            class="w-full inline-block px-2 py-2 border-2 border-green-500 text-green-500 font-medium text-xs leading-tight uppercase rounded-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-          >
-            مشاهده جزئیات
-          </button>
-        </div>
+        {detailBtn && (
+          <div className="w-25 mr-auto ml-4">
+            <Link to={`./${id}`}>
+              <button
+                type="button"
+                class="w-full inline-block px-2 py-2 border-2 border-green-500 text-green-500 font-medium text-xs leading-tight uppercase rounded-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+              >
+                مشاهده جزئیات
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
