@@ -30,8 +30,16 @@ const QuestionDetail = () => {
     });
   };
   const { id } = useParams();
-  const setGoodNum = (answerNew) => {
-    console.log("answerNew", answerNew);
+  const setGoodNum = (index,answerNew) => {
+    question.answers[index] = answerNew
+    api.put(getSpecialQuestion(id), {
+      title:question.title,
+      description:question.description,
+      time:'12:00',
+      date:'1400/01/26',
+      answers:question.answers,
+    });
+    setUpdateData(true)
   };
   return (
     <Layout>
@@ -44,7 +52,7 @@ const QuestionDetail = () => {
               <AnswersCard
                 data={answer}
                 key={index}
-                setGoodNum={setGoodNum}
+                setGoodNum={(answer)=>setGoodNum(index,answer)}
               />
             );
           })}
